@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "robot": {
+      "command": "bash",
+      "args": ["run_server.sh"],
+      "env": {
+        "ROBOT_REALTIME": "1.0",
+        "ROBOT_RENDER": "640x480",
+        "ROBOT_LAYOUT": "basic"
+      }
+    }
+  }
+}

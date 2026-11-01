@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="420" viewBox="0 0 900 420" font-family="Hiragino Sans, Noto Sans CJK JP, sans-serif" font-size="14">
+  <defs>
+    <marker id="arr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#555"/></marker>
+  </defs>
+  <rect width="900" height="420" fill="#ffffff"/>
+  <!-- User -->
+  <rect x="20" y="150" width="130" height="80" rx="10" fill="#fff4d6" stroke="#d9a400"/>
+  <text x="85" y="185" text-anchor="middle" font-weight="bold">ユーザー</text>
+  <text x="85" y="207" text-anchor="middle" font-size="12">日本語で指示</text>
+  <!-- Claude Code -->
+  <rect x="200" y="110" width="200" height="160" rx="10" fill="#e8f0ff" stroke="#3b6fd6"/>
+  <text x="300" y="138" text-anchor="middle" font-weight="bold">Claude Code（Claude）</text>
+  <text x="300" y="162" text-anchor="middle" font-size="12">画像を見て計画・判断</text>
+  <text x="300" y="182" text-anchor="middle" font-size="12">ツール呼び出しで実行</text>
+  <text x="300" y="202" text-anchor="middle" font-size="12">結果を検証・報告</text>
+  <text x="300" y="232" text-anchor="middle" font-size="11" fill="#555">CLAUDE.md = オペレータ行動指針</text>
+  <text x="300" y="250" text-anchor="middle" font-size="11" fill="#555">（計画 → 実行 → 検証）</text>
+  <!-- MCP server -->
+  <rect x="460" y="60" width="200" height="300" rx="10" fill="#eafaf0" stroke="#2e9e5b"/>
+  <text x="560" y="88" text-anchor="middle" font-weight="bold">MCP サーバー（Python）</text>
+  <rect x="475" y="100" width="170" height="52" rx="6" fill="#fff" stroke="#2e9e5b"/>
+  <text x="560" y="120" text-anchor="middle" font-size="12" font-weight="bold">知覚 perception.py</text>
+  <text x="560" y="140" text-anchor="middle" font-size="11">HSV 色分割 + 深度逆投影 + 追跡</text>
+  <rect x="475" y="162" width="170" height="52" rx="6" fill="#fff" stroke="#2e9e5b"/>
+  <text x="560" y="182" text-anchor="middle" font-size="12" font-weight="bold">スキル skills.py</text>
+  <text x="560" y="202" text-anchor="middle" font-size="11">pick / place / home（直交補間）</text>
+  <rect x="475" y="224" width="170" height="52" rx="6" fill="#fff" stroke="#2e9e5b"/>
+  <text x="560" y="244" text-anchor="middle" font-size="12" font-weight="bold">逆運動学 ik.py</text>
+  <text x="560" y="264" text-anchor="middle" font-size="11">減衰最小二乗法 + ヌル空間</text>
+  <rect x="475" y="286" width="170" height="52" rx="6" fill="#fff" stroke="#2e9e5b"/>
+  <text x="560" y="306" text-anchor="middle" font-size="12" font-weight="bold">ビューア viewer.py</text>
+  <text x="560" y="326" text-anchor="middle" font-size="11">MJPEG ライブ配信 + MP4 録画</text>
+  <!-- MuJoCo -->
+  <rect x="720" y="110" width="160" height="160" rx="10" fill="#f6e9ff" stroke="#8a4fd1"/>
+  <text x="800" y="138" text-anchor="middle" font-weight="bold">MuJoCo</text>
+  <text x="800" y="162" text-anchor="middle" font-size="12">Franka Panda + 卓上</text>
+  <text x="800" y="182" text-anchor="middle" font-size="12">ブロック・トレイ</text>
+  <text x="800" y="202" text-anchor="middle" font-size="12">カメラ: top / front /</text>
+  <text x="800" y="220" text-anchor="middle" font-size="12">wrist / side（RGB+深度）</text>
+  <text x="800" y="250" text-anchor="middle" font-size="11" fill="#555">500 Hz 物理・重力補償</text>
+  <!-- arrows -->
+  <line x1="150" y1="190" x2="200" y2="190" stroke="#555" stroke-width="2" marker-end="url(#arr)"/>
+  <line x1="400" y1="170" x2="460" y2="170" stroke="#555" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="430" y="160" text-anchor="middle" font-size="11">tool call</text>
+  <line x1="460" y1="205" x2="400" y2="205" stroke="#555" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="430" y="222" text-anchor="middle" font-size="11">結果 + 画像</text>
+  <line x1="660" y1="170" x2="720" y2="170" stroke="#555" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="690" y="160" text-anchor="middle" font-size="11">ctrl</text>
+  <line x1="720" y1="205" x2="660" y2="205" stroke="#555" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="690" y="222" text-anchor="middle" font-size="11">観測</text>
+  <!-- tools list -->
+  <text x="300" y="300" text-anchor="middle" font-size="11" fill="#333">MCP ツール: look / detect_objects / pick / place / verify /</text>
+  <text x="300" y="318" text-anchor="middle" font-size="11" fill="#333">move_to / open・close_gripper / home / say / nudge_object /</text>
+  <text x="300" y="336" text-anchor="middle" font-size="11" fill="#333">reset_scene / get_state / start・stop_recording</text>
+  <!-- live viewer -->
+  <rect x="200" y="360" width="460" height="40" rx="8" fill="#f3f3f3" stroke="#999"/>
+  <text x="430" y="385" text-anchor="middle" font-size="12">ライブビューア http://localhost:8765/（前方カメラ + 手首カメラ + 字幕 + ツールログ） → 画面録画 / MP4</text>
+</svg>
