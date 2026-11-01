@@ -4,12 +4,29 @@
 
 ```bash
 .venv/bin/python scripts/run_claude_demo.py --name final_demo --layout basic --render 1280x960 --max-turns 80 "<3 作業をまとめた指示文>"
+# タスク区切り（run 開始からの秒数は events.jsonl の reset_scene などの時刻から決める）
+cat > recordings/final_demo/chapters.json <<'JSON'
+[
+  {"t": 0,     "title": "タスク 1 / 3", "text": "赤いブロックを青いトレイに入れる", "label": "タスク 1/3　赤いブロックを青いトレイへ"},
+  {"t": 39.7,  "title": "タスク 2 / 3", "text": "ブロックを色ごとに仕分ける",
+   "sub": "赤 → 赤いトレイ、青 → 青いトレイ（緑は対象外）", "label": "タスク 2/3　色ごとに仕分け"},
+  {"t": 115.8, "title": "タスク 3 / 3", "text": "ブロックを大きい順に積み上げる", "label": "タスク 3/3　大きい順に積み上げ"}
+]
+JSON
 .venv/bin/python scripts/compose_video.py --run recordings/final_demo --max-gap 4
-.venv/bin/python scripts/finalize_video.py --run recordings/final_demo --speed 1 --end "<終了カードの文>"
+.venv/bin/python scripts/finalize_video.py --run recordings/final_demo --speed 1 \
+    --intro "<講座配布のジングル.mp4>" --overview "この動画の見方\n<箇条書き>…" --end "<まとめカードの文>" \
+    --out recordings/submission/final.mp4
 ```
 
-`recordings/final_demo/final_1x.mp4`（1920×1080、約 2 分 20 秒、等速）ができる。左がシミュレータ（字幕は Claude の
-`say()`）、右が Claude Code のチャット（指示・発話・ツール呼び出し・結果）。
+できる動画（1920×1080、約 2 分 40 秒、等速）の構成:
+
+1. 講座配布のオープニング映像（3 秒）→ タイトルカード（白からフェードイン）
+2. 「動画の見方」カード（左右の画面の意味、Claude が何をするか）
+3. 本編。各タスクの前にタスク文だけのスライドを 4 秒挟み、タスク中は映像の左下に「タスク n/3 …」を常時表示。
+   左がシミュレータ（上の字幕は Claude の `say()`、右下は手首カメラ）、右が Claude Code のチャット
+   （指示・発話・ツール呼び出し・結果）。
+4. まとめカード。
 
 ## 方法 B: Claude デスクトップアプリの画面録画
 

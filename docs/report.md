@@ -4,7 +4,7 @@
 
 - 使用ツール: MuJoCo 3.17（Franka Panda, mujoco_menagerie）、Python 3.12、Claude Code + MCP（Model Context Protocol）
 - コード: https://github.com/Kaito-Furuo/pai1_final
-- 動画: （YouTube URL）
+- 動画: https://youtu.be/7DrWkL0cJXM
 
 ---
 
@@ -56,10 +56,13 @@ LLM が計画・判断を担い、実行は古典的な制御に委ねる方式�
 | 1 | 赤いブロックを青いトレイに入れて | 把握 → 宣言 → 把持 → 設置 → 検証の基本ループ。手首カメラで把持が見える |
 | 2 | ブロックを色ごとに仕分けして | 同色 2 個ずつ。順番を自分で決めて宣言し、トレイ内の空き位置に並べる |
 | 3 | 大きい順に積み上げて | 知覚したサイズから順序を判断し、ブロックの上に設置（支持面の高さを検出） |
-| 4 | （人が物体を動かす）やり直して | `nudge_object` で外乱。再検出して ID を引き継ぎ、やり直す |
+
+動画は講座配布のオープニング映像 → タイトル → 「動画の見方」カード → 本編 → まとめカードの順で、本編では
+各タスクの前にタスク文だけのスライドを 1 枚挟み、タスク中は映像の左下に現在のタスクを常時表示する。
+`nudge_object` による外乱からの回復は MCP 統合テスト（`scripts/mcp_client_test.py`）で確認したが、動画には含めていない。
 
 <div class="fig"><img src="img/composed_frame.jpg" alt="動画の構成"></div>
-<p style="text-align:center;font-size:9pt">動画の構成: 左がシミュレータ（字幕は Claude の say()）、右が Claude Code のチャット（指示・発話・ツール呼び出し）</p>
+<p style="text-align:center;font-size:9pt">動画の構成: 左がシミュレータ（上の字幕は Claude の say()、左下は現在のタスク）、右が Claude Code のチャット（指示・発話・ツール呼び出し・結果）</p>
 
 ## 4. 評価
 

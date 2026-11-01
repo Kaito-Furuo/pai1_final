@@ -6,7 +6,7 @@ Physical AI 応用 1 講座 最終課題「AI × ロボティクスによる創�
 日本語の指示だけで操作します。** Claude はカメラ画像を見て計画を立て、把持・設置のスキルを呼び出し、
 結果を画像と知覚結果で検証してから報告します。API キーは不要で、Claude Code をこのリポジトリで開くだけで動きます。
 
-- 動画: （YouTube リンクをここに記載）
+- 動画: https://youtu.be/7DrWkL0cJXM（YouTube、タイトル `PAI最終課題_83473`、等速）
 - レポート: [docs/report.md](docs/report.md)
 
 ![architecture](docs/architecture.svg)
@@ -97,9 +97,13 @@ PYTHONPATH=. .venv/bin/python scripts/test_pick_place.py scratch   # 動作確�
 ### 3. 動画を作る（ヘッドレス実行の記録から）
 
 ```bash
-.venv/bin/python scripts/compose_video.py --run recordings/demo1      # 左: シミュレータ / 右: チャット の 1080p 動画
-.venv/bin/python scripts/finalize_video.py --run recordings/demo1 --speed 2   # タイトルカード + 2 倍速
+.venv/bin/python scripts/compose_video.py --run recordings/demo1 --max-gap 4   # 左: シミュレータ / 右: チャット の 1080p 動画
+.venv/bin/python scripts/finalize_video.py --run recordings/demo1 --speed 2    # タイトルカード + 2 倍速
 ```
+
+`recordings/demo1/chapters.json` を置くと、タスクの切り替わりにタスク文だけのスライドを挟み、以降は映像の左下に
+現在のタスクを常時表示します（書式は `scripts/compose_video.py` 冒頭のコメント参照）。`finalize_video.py` は
+`--intro/--outro`（前後に付ける映像）、`--overview`（「動画の見方」カード）、`--end`（まとめカード）も受け付けます。
 
 ### 4. Claude なしで動かす
 
